@@ -1,0 +1,16 @@
+define({
+  "name": "apidoc-example",
+  "version": "0.3.0",
+  "description": "精致的接口文档",
+  "title": "你好呀",
+  "url": "http://127.0.0.1:4000",
+  "sampleUrl": false,
+  "defaultVersion": "0.0.0",
+  "apidoc": "0.3.0",
+  "generator": {
+    "name": "apidoc",
+    "time": "2020-11-13T10:16:34.001Z",
+    "url": "https://apidocjs.com",
+    "version": "0.25.0"
+  }
+});

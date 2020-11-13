@@ -1,0 +1,15 @@
+{
+  "name": "06-express",
+  "version": "1.0.0",
+  "description": "ajax 2007。8\r 前后端分离 前端通过 ajax 请求数据\r \\$.get('http://www.baidu.com/user/login?us=123&ps=456',()=>{",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
