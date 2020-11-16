@@ -11,6 +11,14 @@
   "dependencies": {
     "express": "^4.17.1",
     "mongoose": "^5.10.12",
-    "nodemailer": "^6.4.16"
+    "nodemailer": "^6.4.16",
+    "bagpipe": "^0.3.5",
+    "cheerio": "^1.0.0-rc.3",
+    "request": "^2.88.2",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "ejs": "~2.6.1",
+    "http-errors": "~1.6.3",
+    "morgan": "~1.9.1"
   }
 }
