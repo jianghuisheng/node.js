@@ -238,7 +238,63 @@ function test(){
         > {111@qq.com:{ctime:第一次发送的时间戳,code:1233}}
 3. apidoc 自动生成 api 接口文档
 
+- npm install apidoc -g
+- 在你的项目根目录下新建 apidoc.json 文件，该文件描述了项目对外提供接口的概要信息如名称、版本、描述、文档打开时浏览器显示标题和接口缺省访问地址。
+  ```
+  {
+    "name": "ServiceEbikeAPIs",
+    "version": "3.1.0",
+    "description": "车辆服务接口文档",
+    "title": "ServiceEbikeAPIs",
+    "url" : "http://cjl3.rokyinfo.net:7190/api-ebike"
+  }
+  ```
+- 使用样例
+
+```
+/**
+ * @api {get} /user/login 用户登陆
+ * @apiName login
+ * @apiGroup User
+ *
+ * @apiParam {String} us 用户名
+ * @apiParam {String} ps 用户密码
+ *
+ * @apiSuccess {String} firstname Firstname of the User.
+ * @apiSuccess {String} lastname  Lastname of the User.
+ */
+// 登陆
+router.post('/login', (req, res) => {
+  let { us, ps } = req.body
+  if (us && ps) {
+    User.find({ us, ps })
+      .then(data => {
+        console.log(data)
+        if (data.length > 0) {
+          res.send({ err: 0, msg: '登录成功' })
+        } else {
+          res.send({ err: -2, msg: '用户名或密码不正确' })
+        }
+      })
+      .catch(err => {
+        return res.send({ err: -1, msg: '内部错误' })
+      })
+  } else {
+    return res.send({ err: -1, msg: '参数错误' })
+  }
+})
+
+```
+
+- 生成文档 cd 到 apidoc.json 所在路径（即项目根目录）执行如下命令即可
+
+```
+apidoc -i router/ -o apidoc/
+```
+- 点开apidoc文件夹中index.html会发现已经生成的漂亮的api文档
+
 ### curd 餐厅管理系统
+
 1. 增加
 2. 查询分类
 3. 关键字查询

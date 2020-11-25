@@ -34,4 +34,5 @@ function send (mail, code) {
   })
 
 }
+
 module.exports = { send }
