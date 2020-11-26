@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dhgate layer</title>
+  <script src="http://www.dhresource.com/user/crm/preshipment/js/jquery.min.js"></script>
+  <style>
+    .shadow {
+      width: 100%;
+      height: 100%;
+      position: fixed;
+      z-index: 8888;
+      left: 0;
+      top: 0;
+      background: #000;
+      opacity: 0.3;
+      /* display: none; */
+    }
+
+    .tips {
+      z-index: 9999;
+      background: rgba(255, 255, 255, 1);
+      border: 1px solid rgba(170, 170, 170, 1);
+      box-shadow: 2px 3px 7px 0px rgba(0, 0, 0, 0.2);
+      position: fixed;
+      width: 512px;
+      left: calc(50% - 256px);
+      top: calc(50% - 150px);
+      padding-bottom: 61px;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+
+    .tips .tips-close {
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      top: 10px;
+      right: 0;
+      color: #666666;
+      cursor: pointer;
+    }
+
+    .tips .tipTitle {
+      height: 31px;
+      line-height: 31px;
+      background: rgba(245, 245, 245, 1);
+      color: #000000;
+      font-weight: bold;
+      margin: 0;
+      padding: 10px;
+    }
+
+    .tips .tip-content {
+      text-align: center;
+      color: #333333;
+      font-size: 14px;
+      padding-top: 55px;
+    }
+
+    .tips .tip-content p {
+      max-width: 92%;
+      margin: 0 auto 7px;
+    }
+
+
+    .btn-wraps {
+      display: flex;
+      justify-content: center;
+      margin-top: 40px;
+    }
+
+    .tip-btn {
+      display: inline-block;
+      padding: 0px 21px;
+      border: 1px solid #f6d184;
+      color: #b25706;
+      background-image: linear-gradient(to bottom right, #fee8ab, #fee9ad);
+      cursor: pointer;
+      text-align: center;
+      border-radius: 2px;
+      font-size: 14px;
+      background-color: #f70;
+      font-family: 'å¾®è½¯é›…é»‘';
+      height: 30px;
+      line-height: 30px;
+    }
+
+    .tip-btn:hover {
+      color: #763800;
+      background-image: linear-gradient(to bottom right, #ffeca4, #fdd67b);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="shadow"></div>
+
+  <div class="tips">
+    <p class="tipTitle">
+      <span>详细说明</span>
+      <span class="tips-close">X</span>
+    </p>
+    <div class="tip-content">
+      <p>距离退货时间未超过<span class="pentad-time">5</span>个自然日，不可以确认收货</p>
+    </div>
+    <div class="btn-wraps">
+      <span class="tip-btn">按钮</span>
+    </div>
+  </div>
+
+  <script>
+    $('.tips').on('click', '.tips-close', function () {
+      $('.shadow').fadeOut()
+      $(this).parents('.tips').fadeOut()
+    })
+
+    $('.btn-wraps').on('click', '.tip-btn', function () {
+      $.get('/cors', {}, function (res) {
+        console.log(res);
+      })
+    })
+  </script>
+</body>
+
+</html>
