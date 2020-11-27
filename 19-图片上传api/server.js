@@ -4,6 +4,7 @@ require('./db/connect')
 const bodyParser = require('body-parser')
 const userRouter = require('./router/userRouter')
 const foodRouter = require('./router/foodRouter')
+const fileRouter = require('./router/fileRouter')
 const path = require('path')
 
 // 解决跨域(一) express中间件cors
@@ -43,6 +44,7 @@ app.all('*', function (req, res, next) {
 
 app.use('/user', userRouter)
 app.use('/food', foodRouter)
+app.use('/file', fileRouter)
 
 app.listen(4000, () => {
   console.log('server start')

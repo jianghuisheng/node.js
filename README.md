@@ -301,3 +301,4 @@ apidoc -i router/ -o apidoc/
 4. 分页查询
 5. 删除
 6. 修改
+7. 上传图片
