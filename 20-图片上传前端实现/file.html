@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>fileUpload</title>
+  <script src="jquery.min.js"></script>
+</head>
+
+<body>
+  <!-- 同步提交 -->
+  <form action="http:192.168.76.62:4000/file/upload" method="POST" enctype="multipart/form-data">
+    <h2>单图上传</h2>
+    <input type="file" name="hehe">
+    <input type="submit" value="提交">
+  </form>
+
+  <!-- formData+ajax提交 -->
+  <form id="uploadForm">
+    <p>指定文件名：<input type="text" name="filename" value=""></p>
+    <p>上传文件： <input type="file" name="hehe"></p>
+    <img src="" alt="">
+    <input type="button" value="上传" onclick="doUpload()">
+  </form>
+  <script>
+    function doUpload() {
+      let HOST = 'http:192.168.76.62:4000'
+      let formData = new FormData($('#uploadForm')[0])
+      // formData.append('hehe','xxx')
+      $.ajax({
+        type: 'POST',
+        url: HOST + '/file/upload',
+        data: formData,
+        cache: false, // 上传文件不需要缓存
+        processData: false, // 必须 数据格式化处理,因为data值是FormData对象,所以不需要对数据做处理
+        contentType: false, // 必须 <form>是由表单构造的FormData对象，且已经声明了属性enctype="multipart/form-data",所以这里设置为false
+        success: function (res) {
+          console.log(res)
+          $('img').attr('src', HOST + `${res.img}`)
+        },
+        error: function (err) {
+          console.log(err)
+        }
+      })
+    }
+  </script>
+</body>
+
+</html>

@@ -290,6 +290,7 @@ router.post('/login', (req, res) => {
 
 ```
 apidoc -i router/ -o apidoc/
+apidoc -i router/ -o www/apidoc/
 ```
 - 点开apidoc文件夹中index.html会发现已经生成的漂亮的api文档
 
