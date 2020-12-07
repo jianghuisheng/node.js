@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>socket.io</title>
+  <!-- <script src="../node_modules/socket.io/client-dist/socket.io.js"></script> -->
+  <script src="socket.io.js"></script>
+</head>
+
+<body>
+  <script>
+    const socket = io.connect('http://192.168.76.62:8081')
+
+    socket.on('hehe', function (msg) {
+      console.log('hehe');
+    })
+  </script>
+</body>
+
+</html>
