@@ -1,10 +1,24 @@
-const express = require('express')
-const app = express()
-const server = require('http').Server(app)
-const io = require('socket.io')(server) // 将socket服务器和express进行结合 好处websocket和node服务器共用一个接口
+var app = require('express')()
+var express = require('express')
+var server = require('http').Server(app)
+var io = require('socket.io')(server)
 
-io.on('connection', function (client) {
-  client.emit('hehe', '欢迎光临')
+server.listen(80, { origins: '*' })
+
+app.use(express.static('./static'))
+io.on('connection', function (socket) {
+  console.log('websocket has connected')
+  socket.emit('message', { hello: '欢迎链接' })
+  socket.on('my other event', function (data) {
+    console.log(data)
+    socket.emit('message', { hello: '发送成功' })
+  })
+  socket.on('say', function (data) {
+    console.log(data)
+    if (data.my === '走，一起吃饭吧') {
+      io.sockets.emit('eating', { hello: '果断走起呀！' })
+      return
+    }
+    io.sockets.emit('news', { hello: data.my })
+  })
 })
-// server.listen(8081, '0.0.0.0') // 允许所有的端口访问
-io.listen(8081, { origins: '*:*' }) // 允许所有的端口访问

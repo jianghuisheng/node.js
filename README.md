@@ -303,3 +303,76 @@ apidoc -i router/ -o www/apidoc/
 5. 删除
 6. 修改
 7. 上传图片
+
+
+
+前后端不分离
+
+前后端分离 前端矩阵 (app pc 小程序(微信 支付宝 抖音...) wap)
+
+- ===>只需配一个后端就行，降低开发成本，不分离则不行。
+- 核心：api 接口
+  - url: http:www.xxx.com/user/reg
+  - 参数
+  - 结果
+  - 方法
+- api 接口功能
+  > 前后端交互的桥梁
+  1. 前端：ajax 通过 api 接口传递数据
+  2. 后端: 通过 api 接受数据,处理数据，返回数据
+  3. 前端: 接受返回的数据 页面的刷新渲染
+
+实现 socket 的方式
+
+1. net
+2. socket.io 麻烦 兼容性最好
+3. websoket h5 新增 低版本浏览器不兼容 使用方式简单
+
+4. 搭建 socket 服务器
+5. 前端进行连接
+6. 前端主动发送数据
+7. 后端主动发送数据
+8. 断开连接
+
+什么时候用长链接
+
+1. 实时刷新(轮询)
+2. 服务器端发起数据
+
+时间换空间 空间换时间
+
+### 身份验证
+
+http 请求 无状态
+
+1. 登陆时候 发布一个加密字符串 （用户相关信息） 给前端（自动放在 cookie）
+2. 调用其它接口 将加密字符串 作为参数传递给服务器（cookie 自动传递）
+3. 根据权限进行验证
+
+- cookie-parser
+- express-session
+- jwt
+
+session+cookie
+
+#### 登陆成功
+
+req.session.sign = true
+req.session.name = us
+
+#### 需要验证的接口判断是否存在
+
+#### 注销 session（退出登陆）
+
+app.get('/out',function(req,res){
+res.session.destroy()
+res.redirect('/')
+})
+
+JWT
+
+- 用户登录 服务器端产生一个 token(加密字符串)发送给前端
+- 前端将 token 进行保存
+- 前端发起数据请求的时候携带 token
+- 服务端验证 token 是否合法 如果合法继续操作 不合法终止操作
+- token 的使用场景 无状态请求 保持用户的登陆状态 第三方登录 (token+auto2.0)
